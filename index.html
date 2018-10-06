@@ -8,41 +8,169 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>App Title</title>
+    <title>Purchasing Orders Follow Up System</title>
   </head>
   <body>
 
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
       <a class="navbar-brand" href="#">PO Follow-Up</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse" id="navbarMenu">
-        <ul class="navbar-nav">
-          <!-- Link Options -->
-          <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
-        </ul>
-      </div>
+
+      <div class="navbar-collapse collapse" id="navbar-menu">
+
+          <ul class="navbar-nav ml-auto" id="navbar-menu-noauth">
+            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto" id="navbar-menu-auth">
+            <li class="nav-item"><a class="nav-link" href="#pos-card">Purchase Orders</a></li>
+            <li class="nav-item"><a class="nav-link" href="#graphs">Graphs</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li> -->
+          </ul>
+
+        </div>
     </nav>
 
     <!-- Main Container Table and Graphs -->
-    <main class="container">
-      <section class="card po-table ">
-        <div class="card-header"></div>
-
+    <main class="container" id="main-container">
+      <!-- Buttons for Controls -->
+      <section class="controls">
+          <!-- This button is binded to the Modal #add-po-modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-po-modal">Add PO</button>
       </section>
+      <!-- Ends Buttons for Controls -->
 
-      <section class="card graphs">
-        <div class="card-header">
+      <br>
+
+      <!-- Purchase Orders Table -->
+      <section class="card border-primary po-table" id="pos-card">
+        <div class="card-header text-white bg-primary">
+          Purchase Orders
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover" id="po-table">
+              <tr>
+                <th>PO id</th>
+                <th>Product</th>
+                <th>Zone</th>
+                <th>Status</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- Ends Purchase Orders Table -->
+
+      <br>
+
+      <!-- Graphs Section -->
+      <section class="card border-primary graphs" id="graphs-card">
+        <div class="card-header text-white bg-primary">
           Graphs
         </div>
       </section>
+      <!-- Ends Grpahs Section -->
 
     </main>
+    <!-- Ends Main Container -->
 
+    <!-- Welcome Container -->
+    <!-- This Container is Inteded to Show Up When the User is not Authenticated -->
+    <br>
+
+    <section class="container" id="welcome-container">
+      <div class="jumbotron bg-dark text-light text-center">
+        <h1>Welcome!</h1>
+      </div>
+    </section>
     <!-- Modals -->
+    <!-- Modal Login -->
+    <div class="modal fade" id="login-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+  
+            <div class="modal-header">
+              <h2 class="modal-title">Login</h2>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+  
+            <div class="modal-body">
+              <form action="">
+                <div class="form-group">
+                  <span class="text-light text-center bg-danger" id="login-modal-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label for="po-id-input">Email</label>
+                  <input type="email" class="form-control form-control-sm" id="email-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="zone-input">Password</label>
+                  <input type="password" class="form-control form-control-sm" id="password-input" placeholder="">
+                </div>
+              </form>
+            </div>
+  
+            <div class="modal-footer">
+              <!-- data-dismiss="modal" -->
+              <button type="button" class="btn btn-success" id="login-modal-button">
+                Login
+              </button>
+              <button type="button" class="btn btn-primary" id="signup-modal-button">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal Add PO -->
+    <div class="modal fade" id="add-po-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h2 class="modal-title">Add Purchase Order</h2>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form action="">
+              <!--
+              Form Text Input Element Template
+                  <div class="form-group">
+                  <label for=""></label>
+                  <input type="text" class="form-control form-control-sm" id="" placeholder="">
+                  </div>
+              -->
+              <div class="form-group">
+                  <span class="text-light text-center bg-danger" id="add-po-modal-msg"></span>
+                </div>
+              <div class="form-group"></div>
+                <label for="po-id-input">Purchase Order ID</label>
+                <input type="text" class="form-control form-control-sm" id="po-id-input" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="zone-input">Zone</label>
+                <input type="text" class="form-control form-control-sm" id="zone-input" placeholder="">
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add-po-modal-button">
+              Add Purchase Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -55,5 +183,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <!-- Custom App -->
     <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/populateDB.js"></script>
   </body>
 </html>
