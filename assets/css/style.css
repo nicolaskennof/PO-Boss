@@ -1,0 +1,13 @@
+.navbar-nav {
+    margin: 0 10px 0 auto;
+    /* ml-auto class makes the text-align right auto */
+    /* text-align: right; */
+}
+
+main {
+    margin-top: 80px;
+}
+
+#welcome-container {
+    display: none;
+}
