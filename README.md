@@ -1,6 +1,9 @@
 # Purchasing-Orders-Follow-Up-System
 Purchasing Orders Follow-Up System for registering of the PO and their follow up until delivery to customers
 
+## PTT Presentation
+[Link to PTT Presentation](https://docs.google.com/presentation/d/1tLMjteb4qp60cTpJ9WEAurfOwgx-qxMX1uiCRd6iFpY/edit)
+
 
 ## Firebase Authentication Notes
 **Steps**
@@ -100,4 +103,67 @@ Form Text Input Element Template
     <input type="text" class="form-control form-control-sm" id="" placeholder="">
     </div>
 -->
+```
+
+# GIT NOTES
+## Create a New Branch
+1. Fetch the master Branch [Update the Branch Information of the Repository What New Branches Appear]
+2. Pull the latest updates of the Repository
+3. Create a new Branch.
+4. List the Local Branches.
+5. Work on the Branch (Make Changes).
+6. Check Status of the Branch.
+7. Stage Changes (Add them to the stage Area).
+8. Commit changes.
+9. Push New Branch Changes to the Remote Repository.
+
+
+```bash
+git fetch
+git pull
+git checkout -b [New-Branch]
+git branch
+
+touch new-file-text.txt
+
+git status
+git add -A
+git commit -m "Branch Update"
+
+git push --set-upstream origin [New-Branch]
+```
+
+## Pull a Different Branch From Remote Repository.
+1. Fetch the master Branch [Update the Branch Information of the Repository What New Branches Appear]
+2. Pull the latest updates of the Repository.
+3. List the Remote Branches
+4. Select the Remote Branch and checkout over it.
+
+> Make sure to type the just the name of the branch without location path.
+> i.e:
+```bash
+seijix@MacBookProX Purchasing-Orders-Follow-Up-System (master) $ git branch -va
+  add-html-skeleton                50837d5 index.html
+  codeStart                        fa9080d Fixed Modal
+* master                           1ae77ef Merge pull request #17 from nicolaskennof/codeStart
+  seiji-branch                     d5c30c6 Test
+  remotes/origin/HEAD              -> origin/master
+  remotes/origin/add-html-skeleton 50837d5 index.html
+  remotes/origin/ana-branch        670dec6 test for anas branch
+  remotes/origin/codeStart         fa9080d Fixed Modal
+  remotes/origin/egomezmo          1ae77ef Merge pull request #17 from nicolaskennof/codeStart
+  remotes/origin/master            1ae77ef Merge pull request #17 from nicolaskennof/codeStart
+  remotes/origin/nicolas-branch    0a93df0 test Nico
+  remotes/origin/seiji-branch      d5c30c6 Test
+
+seijix@MacBookProX Purchasing-Orders-Follow-Up-System (master) $ git checkout nicolas-branch
+```
+
+```bash
+git fetch
+git pull
+git branch -va
+
+git checkout [remote_branch]
+
 ```
