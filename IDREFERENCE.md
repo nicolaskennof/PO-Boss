@@ -5,6 +5,7 @@
 navbar-menu
     navbar-menu-auth
     navbar-menu-noauth
+    logout-link
 ```
 
 ## Containers
@@ -38,5 +39,11 @@ password-input
 
 <!-- ADD PO MODAL -->
 po-id-input
+clientSite-input
 zone-input
+lon-input
+lat-input
+poDateTime-input
+totalPrice-input
+status-input
 ```
