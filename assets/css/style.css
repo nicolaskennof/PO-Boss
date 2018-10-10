@@ -4,10 +4,16 @@
     /* text-align: right; */
 }
 
-main {
+#navbar-menu-noauth{
+    display: none;
+}
+
+#main-container {
     margin-top: 80px;
+    display: none;
 }
 
 #welcome-container {
-    display: none;
+    margin-top: 80px;
+    /* display: none; */
 }

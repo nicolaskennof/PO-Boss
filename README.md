@@ -18,6 +18,28 @@ Purchasing Orders Follow-Up System for registering of the PO and their follow up
 
 [Youtube Tutorial Video](https://youtu.be/-OKrloDzGpU)
 
+```javascript
+// Important Methods
+const auth = firebase.auth();
+const promise = auth.signInWithEmailAndPassword(email, password);
+
+const auth = firebase.auth();
+const promise = auth.createUserWithEmailAndPassword(email, password);
+
+// Authentication Real-Time Listener
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser){
+        console.log(firebaseUser);
+    }
+    else{
+        console.log("Not Logged In");
+    }
+});
+
+firebase.auth().signOut();
+
+```
+
 ## Navbar Notes
 [Youtube Tutorial Reference](https://youtu.be/23bpce-5s8I)
 
