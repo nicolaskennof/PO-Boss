@@ -1,3 +1,9 @@
+
+database.ref().on("child_added", function(snapshot) {
+    console.log(snapshot.key);    
+});
+
+
 // ////////////////////////////
 // Charts
 // ////////////////////////////
