@@ -6,7 +6,7 @@
     var result;
     // get the most recent exchange rates via the "live" endpoint:
     $.ajax({
-        url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key,
+        url: 'https://apilayer.net/api/' + endpoint + '?access_key=' + access_key,
         success: function (json) {
 
             // exchange rata data is stored in json.quotes
