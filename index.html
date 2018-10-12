@@ -44,7 +44,7 @@
     </nav>
 
     <header class="container map-container" id="map-container">
-        <div id="map" style="width: 100%; height: 400px; background: grey"></div>
+        <!-- <div id="map" style="width: 100%; height: 400px; background: grey"></div> -->
     </header>
     <!-- Main Container Table and Graphs -->
     <main class="container" id="main-container">
@@ -73,6 +73,7 @@
                 <th>Total Price [USD]</th>
                 <th>Time Left Before Delivery</th>
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </table>
           </div>
@@ -319,11 +320,8 @@
             </div>
   
             <div class="modal-body">
-              <!-- <div id="key"></div>
-              <div id="map"></div> -->
-            <!-- <div id="map" style="width: 100%; height: 400px; background: grey" /> -->
-            <!-- <div id="map" style="width: 600px; height: 400px; background: grey"></div> -->
-            <!-- <div id="map" style="width: 100%; height: 400px; background: grey"></div> -->
+            <div class="text-center" id="map"></div>
+            <!-- <div id="map" style="width: 100%; height: 400px;"></div> -->
               
             </div>
 
@@ -353,5 +351,7 @@
     <script src="assets/javascript/charts.js"></script>
     <!-- drawMap JS -->
     <script src="assets/javascript/drawMap.js"></script>
+    <!-- changeStatus.js -->
+    <script src="assets/javascript/changeStatus.js"></script>
   </body>
 </html>
