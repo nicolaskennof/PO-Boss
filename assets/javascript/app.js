@@ -259,7 +259,8 @@ $("#logout-link").on("click", function(e){
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser){
         // console.log(firebaseUser);
-        console.log("Logged In");
+        // console.log("Logged In");
+        // console.log(firebaseUser);
 
         $("#main-container").show(500);
         $("#navbar-menu-auth").show();
@@ -314,15 +315,15 @@ $("#add-po-modal-button").on("click", function(event) {
             poDateTime: moment($("#poDateTime-input").val().trim(), "YYYY/M/D H:mm").unix(),
             totalPrice: $("#totalPrice-input").val().trim(),
             status: $("#status-input option:selected").val().trim(),
-            createdBy: "",
-            modifiedBy: "",
+            createdBy: firebase.auth().currentUser.email,
+            modifiedBy: firebase.auth().currentUser.email,
             dateAdded: firebase.database.ServerValue.TIMESTAMP,
         }
 
         console.log()
 
         // Code To Push the Data Record to the DataBase
-        // database.ref().push(dbPOrecord);
+        database.ref().push(dbPOrecord);
 
         // Debug
         console.log(dbPOrecord);
