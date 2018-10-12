@@ -4,7 +4,7 @@
     /* text-align: right; */
 }
 
-#navbar-menu-noauth{
+#navbar-menu-noauth {
     display: none;
 }
 
@@ -16,4 +16,24 @@
 #welcome-container {
     margin-top: 80px;
     /* display: none; */
+}
+
+.carousel-control-prev-icon {
+    background-color: #40343B;
+}
+
+.carousel-control-next-icon {
+    background-color: #40343B;
+}
+
+.carousel-control-prev {
+    width: 1%;
+}
+
+.carousel-control-next {
+    width: 1%;
+}
+
+.carousel-indicators {
+    margin-top: 525px;
 }

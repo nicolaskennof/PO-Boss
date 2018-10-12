@@ -1,105 +1,125 @@
+// ////////////////////////////
+// Charts datas retrieval
+// ////////////////////////////
 
-database.ref().on("child_added", function(snapshot) {
-    // console.log(snapshot.key);
+// Chart 1 //
+database.ref().on("child_added", function (snapshot) {
 });
 
 console.log();
 
-// Define the 2 Zone Vectors
-let zoneLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'H']
+// Define vectors
+let statusesLabels = ['P', 'I', 'C', 'D']
+let statusValues = []
+
+database.ref().on("child_added", function (snapshot) {
+    let status = snapshot.val().status
+    for (let i = 0; i < statusesLabels.length; i++) {
+        // If theres no value in position i : initialize it in 0;
+        if (!statusValues[i]) {
+            statusValues[i] = 0;
+        }
+        // If the value of zone is the same as in the label increment its counter.
+        if (status === statusesLabels[i]) {
+            statusValues[i]++;
+        }
+    }
+    drawPoStatusChart();
+});
+
+// Chart 2 //
+database.ref().on("child_added", function (snapshot) {
+});
+
+console.log();
+
+// Define vectors
+let zoneLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 let zoneValues = []
 
-database.ref().on("child_added", function(snapshot) {
-    // console.log(snapshot.val().zone);
+database.ref().on("child_added", function (snapshot) {
     let zone = snapshot.val().zone
-    for (let i = 0; i < zoneLabels.length; i++){
+    for (let i = 0; i < zoneLabels.length; i++) {
         // If theres no value in position i : initialize it in 0;
-        if(!zoneValues[i]){
+        if (!zoneValues[i]) {
             zoneValues[i] = 0;
         }
         // If the value of zone is the same as in the label increment its counter.
-        if (zone === zoneLabels[i]){
+        if (zone === zoneLabels[i]) {
             zoneValues[i]++;
         }
     }
+    drawBestZonesChart();
 });
 
+// Chart 3 //
+
+
 // ////////////////////////////
-// Charts
+// Charts Draw
 // ////////////////////////////
 
 // PO statuses
-var ctxStatus = document.getElementById('ordersStatus').getContext('2d');
-var chartBestCustomers = new Chart(ctxStatus, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: ["On-time", "Delivered", "Delayed", "Incomplete"],
-        datasets: [{
-            label: "Don't know how to do that!",
-            backgroundColor: [
-                "#587C0C",
-                "#007ACC",
-                "#CBBD2D",
-                "#C3602C"],
-            borderColor: [
-                "#587C0C",
-                "#007ACC",
-                "#CBBD2D",
-                "#C3602C"],
-            data: [7, 10, 15, 20],
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
+function drawPoStatusChart() {
+    var ctxStatus = document.getElementById('ordersStatus').getContext('2d');
+    var chartPoStatuses = new Chart(ctxStatus, {
+        type: 'bar',
+        data: {
+            labels: ["Pending", "Incomplete", "Complete", "Delayed"],
+            datasets: [{
+                label: "",
+                backgroundColor: [
+                    "#A8E0FF",
+                    "#3E517A",
+                    "#70CAD1",
+                    "#B08EA2"],
+                borderColor: [
+                    "#99CCE8",
+                    "#3E517A",
+                    "#5CA6AC",
+                    "#917585"],
+                data: statusValues,
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "1 - PO Status Overview"
+            },
+            responsive: true,
+        }
+    });
+};
 
 // Most purchasing zones
-var ctxZones = document.getElementById('bestZones').getContext('2d');
-var chartBestCustomers = new Chart(ctxZones, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        // labels: ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5", "Zone 6"],
-        labels: zoneLabels,
-        datasets: [{
-            label: "",
-            backgroundColor: 'rgb(0, 122, 204)',
-            borderColor: 'rgb(0, 122, 204)',
-            // data: [5, 10, 15, 20, 25, 30],
-            data: zoneValues,
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-// Most purchasing customers
-var ctxCustomers = document.getElementById('bestCustomers').getContext('2d');
-var chartBestCustomers = new Chart(ctxCustomers, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: ["Client 1", "Client 2", "Client 3", "Client 4", "Client 5"],
-        datasets: [{
-            label: "",
-            backgroundColor: 'rgb(88, 124, 12)',
-            borderColor: 'rgb(88, 124, 12)',
-            data: [90, 80, 70, 60, 50],
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
+function drawBestZonesChart() {
+    var ctxZones = document.getElementById('bestZones').getContext('2d');
+    var chartBestZones = new Chart(ctxZones, {
+        type: 'bar',
+        data: {
+            labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E', 'Zone F', 'Zone G', 'Zone H'],
+            datasets: [{
+                label: "",
+                backgroundColor: '#A2E8F6',
+                borderColor: '#82CFDF',
+                data: zoneValues,
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "2 - Delivery Zones Overview"
+            },
+            responsive: true,
+        }
+    });
+};
 
 // ////////////////////////////
 // End Charts
