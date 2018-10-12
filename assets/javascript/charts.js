@@ -3,8 +3,8 @@
 // ////////////////////////////
 
 // Chart 1 //
-database.ref().on("child_added", function (snapshot) {
-});
+// database.ref().on("child_added", function (snapshot) {
+// });
 
 console.log();
 
@@ -28,8 +28,8 @@ database.ref().on("child_added", function (snapshot) {
 });
 
 // Chart 2 //
-database.ref().on("child_added", function (snapshot) {
-});
+// database.ref().on("child_added", function (snapshot) {
+// });
 
 console.log();
 

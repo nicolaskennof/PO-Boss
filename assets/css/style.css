@@ -8,14 +8,18 @@
     display: none;
 }
 
-#main-container {
+header {
     margin-top: 80px;
+}
+
+#main-container {
+    margin-top: 20px;
     display: none;
 }
 
 #welcome-container {
     margin-top: 80px;
-    /* display: none; */
+    display: none;
 }
 
 .carousel-control-prev-icon {

@@ -40,10 +40,10 @@ password-input
 <!-- ADD PO MODAL -->
 po-id-input
 clientSite-input
-zone-input
+zone-input   [Select]
 lon-input
 lat-input
 poDateTime-input
 totalPrice-input
-status-input
+status-input [Select]
 ```
