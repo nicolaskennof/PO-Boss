@@ -1,62 +1,65 @@
- // set endpoint and your access key
- //var totalPrice=0; //aquí es poner que sea el número que sale en la tabla con el precio en MXN
- function convertToUSD(totalPrice){
-    var endpoint = 'live';
-    var access_key = 'e208a825539a0db2517710f6457203b5';
-    var result;
-    // get the most recent exchange rates via the "live" endpoint:
-    // $.ajax({
-    //     url: 'https://apilayer.net/api/' + endpoint + '?access_key=' + access_key,
-    //     success: function (json) {
+var currencyRateCache=null;
+//funcion para convertir MXN a USD
+ function convertToUSD(callbackPrice){
+    
+    if (currencyRateCache!==null){
+        callbackPrice(currencyRateCache);   
+    };
 
-    //         // exchange rata data is stored in json.quotes
-    //         //console.log(json.quotes.USDMXN);
-    //         var USDMXN=json.quotes.USDMXN;
-    //         console.log("tipo de cambio "+USDMXN);
-
-    //         // source currency is stored in json.source
-    //         ///console.log(json.source);
-    //         var totalPriceUSD=Math.round(totalPrice/USDMXN*100)/100;
-    //         console.log(totalPriceUSD);
-    //         result=totalPriceUSD;
-    //     }
-    // });
-    // console.log(result);
-    return result;
+    $.ajax({
+        url: 'https://free.currencyconverterapi.com/api/v6/convert?q=USD_MXN,MXN_USD&compact=ultra',
+        method: "GET"
+    }).then(function(json){
+        //console.log(json);
+        currencyRateCache=json.USD_MXN;
+        callbackPrice(currencyRateCache);
+        console.log("cambio"+currencyRateCache);
+    }).fail(function(error){
+        callbackPrice(19);
+    });
+   
 };
- //countdown
- var deadline = 'october 31 2018'; //cambiar a poDateTime+48h
+
+
+ //difference between current time and deadline
  function getTimeRemaining(endtime){
-      var t = Date.parse(endtime) - Date.parse(new Date());
-     var seconds = Math.floor( (t/1000) % 60 );
-     var minutes = Math.floor( (t/1000/60) % 60 );
-     var hours = Math.floor( (t/(1000*60*60)) % 24 );
-     var days = Math.floor( t/(1000*60*60*24) );
+    var currentTime=Math.round((new Date()).getTime() / 1000);
+    //console.log("current Time"+currentTime);
+    var deadline= parseInt(endtime)+172800;
+    //console.log("deadline"+deadline);
+    var t = deadline - currentTime;
+    //console.log("t"+t);
+     var seconds = Math.floor( (t) % 60 );
+     var minutes = Math.floor( (t/60) % 60 );
+     var hours = Math.floor( (t/(60*60)) % 24 );
+     var days = Math.floor( t/(60*60*24));
+     var totalhours= days*24+hours;
          return {
              'total': t,
              'days': days,
              'hours': hours,
              'minutes': minutes,
-             'seconds': seconds
+             'seconds': seconds,
+             'totalhours': totalhours
          };
 }
-
- function initializeClock(id, endtime){
- var clock = document.getElementById(id);
- var timeinterval = setInterval(function(){
-     var t = getTimeRemaining(endtime);
-     clock.innerHTML = 'days: ' + t.days + '<br>' +
-                     'hours: '+ t.hours + '<br>' +
-                     'minutes: ' + t.minutes + '<br>';
-     if(t.total<=0){
-     clearInterval(timeinterval);
-     }
- },1000);
- }
-
- //initializeClock('clockdiv', deadline);
+//show the time remaining
+ function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var timeinterval = setInterval(function(){
+        var t = getTimeRemaining(endtime);
+        //clock.innerHTML = 'days: ' + t.days + '<br>' +
+        //                'hours: '+ t.hours + '<br>';
+        clock.innerHTML=t.totalhours;
+        if(t.total<=0){
+        clearInterval(timeinterval);
+        }
+       
+    },10000);
+}
 
  
+convertToUSD(function(USDMXN){  
 // Firebase watcher .on("child_added"
 database.ref().on("child_added", function(snapshot) {
 
@@ -81,14 +84,18 @@ database.ref().on("child_added", function(snapshot) {
     zoneTd.text(snapshot.val().zone);
 
     let priceMxnTd = $("<td>");
-    priceMxnTd.text(snapshot.val().totalPrice);
+    priceMxnTd.text("$"+snapshot.val().totalPrice);
 
     let priceUsdTd = $("<td>");
     // Convert MXN to USD
-    priceUsdTd.text(convertToUSD(snapshot.val().totalPrice));
-
+    let priceUSD=Math.round((snapshot.val().totalPrice/USDMXN)*100)/100;
+    //console.log(priceUSD);
+    priceUsdTd.text("$"+priceUSD);
+            
+            
     let timeLeftTd = $("<td>");
-    // Calculate it with moment JS
+    //giving an id per timecell
+    timeLeftTd.attr("id","time"+snapshot.val().poId);
 
     let statusTd = $('<td class="status-td">');
     statusTd.text(snapshot.val().status);
@@ -126,13 +133,10 @@ database.ref().on("child_added", function(snapshot) {
     row.append(actionsTd);
 
     row.appendTo(poTable);
+    initializeClock("time"+snapshot.val().poId,snapshot.val().poDateTime);
 
     // Handle the errors
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
-
-
-/*Acomodar AJAX
-llamar bien el tiempo remaining
-Unix más 48*/ 
+});
