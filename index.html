@@ -1,83 +1,88 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-    <title>Purchasing Orders Follow Up System</title>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">PO Follow-Up</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <div class="navbar-collapse collapse" id="navbar-menu">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <title>Purchasing Orders Follow Up System</title>
+</head>
 
-          <ul class="navbar-nav ml-auto" id="navbar-menu-noauth">
-            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-          </ul>
+<body>
+  <!-- Navbar Header-->
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="assets/images/Logo.png" width="50%" height="50%"></a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-          <ul class="navbar-nav ml-auto" id="navbar-menu-auth">
-            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#add-po-modal">Add PO</a></li>
-            <li class="nav-item"><a class="nav-link" href="#charts-card">Charts</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="logout-link">Logout</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li> -->
-          </ul>
+    <div class="navbar-collapse collapse" id="navbar-menu">
 
-        </div>
-    </nav>
+      <ul class="navbar-nav ml-auto" id="navbar-menu-noauth">
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+      </ul>
 
-    <!-- Main Container Table and Graphs -->
-    <main class="container" id="main-container">
-      <!-- Buttons for Controls -->
-      <section class="controls">
-          <!-- This button is binded to the Modal #add-po-modal -->
-          <!-- 
+      <ul class="navbar-nav ml-auto" id="navbar-menu-auth">
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#add-po-modal">Add PO</a></li>
+        <li class="nav-item"><a class="nav-link" href="#charts-card">Charts</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="logout-link">Logout</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li> -->
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- Main Container Table and Graphs -->
+  <main class="container" id="main-container">
+    <!-- Buttons for Controls -->
+    <section class="controls">
+      <!-- This button is binded to the Modal #add-po-modal -->
+      <!-- 
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-po-modal">Add PO</button>
           -->
-      </section>
-      <!-- Ends Buttons for Controls -->
+    </section>
+    <!-- Ends Buttons for Controls -->
 
-      <br>
+    <br>
 
-      <!-- Purchase Orders Table -->
-      <section class="card border-primary po-table" id="pos-card">
-        <div class="card-header text-white bg-primary"><h4>Orders</h4></div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover" id="po-table">
-              <tr>
-                <th>PO Id</th>
-                <th>Customer</th>
-                <th>Zone</th>
-                <th>Total Price [MXN]</th>
-                <th>Total Price [USD]</th>
-                <th>Time Left Before Delivery</th>
-                <th>Status</th>
-              </tr>
-            </table>
-          </div>
+    <!-- Purchase Orders Table -->
+    <section class="card border-primary po-table" id="pos-card">
+      <div class="card-header text-white bg-primary">
+        <h4>Orders</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" id="po-table">
+            <tr>
+              <th>PO Id</th>
+              <th>Customer</th>
+              <th>Zone</th>
+              <th>Total Price [MXN]</th>
+              <th>Total Price [USD]</th>
+              <th>Time Left Before Delivery</th>
+              <th>Status</th>
+            </tr>
+          </table>
         </div>
-      </section>
-      <!-- Ends Purchase Orders Table -->
+      </div>
+    </section>
+    <!-- Ends Purchase Orders Table -->
 
-      <br>
+    <br>
 
     <!-- Graphs Section -->
     <!--  <section class="card border-primary charts" id="charts-card">
         <div class="card-header text-white bg-primary"> -->
-          <!-- Charts Section -->
-          <!--  <section class="card border-primary graphs" id="graphs-card">
+    <!-- Charts Section -->
+    <!--  <section class="card border-primary graphs" id="graphs-card">
                 <div class="card-header text-white bg-primary"><h4>Charts</h4></div>
                 <div class="card-body">
                   <div class="card">
@@ -103,242 +108,256 @@
                   </div>
                 </div>
               </section> -->
-              <!-- Ends Charts Section -->
-      <!--  </div>
+    <!-- Ends Charts Section -->
+    <!--  </div>
       </section> -->
-      <!-- Ends Graphs Section -->
+    <!-- Ends Graphs Section -->
 
-      <!-- Charts Section 2 -->
-      <section class="card border-primary charts" id="charts-card">
-          <div class="card-header text-white bg-primary"><h4>Charts</h4></div>
-          <div class="card-body">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <canvas id="ordersStatus"></canvas>
-          </div>
-          <div class="carousel-item">
-            <canvas id="bestZones"></canvas>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+    <!-- Charts Section 2 -->
+    <section class="card border-primary charts" id="charts-card">
+      <div class="card-header text-white bg-primary">
+        <h4>Charts</h4>
       </div>
+      <div class="card-body">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <canvas id="ordersStatus"></canvas>
+            </div>
+            <div class="carousel-item">
+              <canvas id="bestZones"></canvas>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
     </section>
     <!-- End Charts Section 2 -->
-    </main>
-    <!-- Ends Main Container -->
+  </main>
+  <!-- Ends Main Container -->
 
-    <!-- Welcome Container -->
-    <!-- This Container is Inteded to Show Up When the User is not Authenticated -->
-    <br>
+  <!-- Welcome Container -->
+  <!-- This Container is Inteded to Show Up When the User is not Authenticated -->
+  <br>
 
-    <section class="container" id="welcome-container">
-      <div class="jumbotron bg-dark text-light text-center">
-        <h1>Purchasing Orders Follow Up System</h1>
-      </div>
-    </section>
-    <!-- Modals -->
-    <!-- Modal Login -->
-    <div class="modal fade" id="login-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
+  <section class="container" id="welcome-container">
+    <div class="jumbotron bg-dark text-light text-center">
+      <img src="assets/images/Logo.png" width="50%" height="50%">
+      <hr>
+      <h1>Purchasing Orders Follow-Up System</h1>
+    </div>
+  </section>
+  <!-- Modals -->
+  <!-- Modal Login -->
+  <div class="modal fade" id="login-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-          <div class="modal-header">
-            <h2 class="modal-title">Login</h2>
-            <button type="button" class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-          </div>
+        <div class="modal-header">
+          <h2 class="modal-title">Login</h2>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
 
-          <div class="modal-body">
-            <form action="">
-              <div class="form-group">
-                <span class="text-light text-center bg-danger" id="login-modal-msg"></span>
-              </div>
-              <div class="form-group">
-                <label for="po-id-input">Email</label>
-                <input type="email" class="form-control form-control-sm" id="email-input" placeholder="">
-              </div>
-              <div class="form-group">
-                <label for="zone-input">Password</label>
-                <input type="password" class="form-control form-control-sm" id="password-input" placeholder="">
-              </div>
-            </form>
-          </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              <span class="text-light text-center bg-danger" id="login-modal-msg"></span>
+            </div>
+            <div class="form-group">
+              <label for="po-id-input">Email</label>
+              <input type="email" class="form-control form-control-sm" id="email-input" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="zone-input">Password</label>
+              <input type="password" class="form-control form-control-sm" id="password-input" placeholder="">
+            </div>
+          </form>
+        </div>
 
-          <div class="modal-footer">
-            <!-- data-dismiss="modal" -->
-            <button type="button" class="btn btn-success" id="login-modal-button">
-              Login
-            </button>
-            <button type="button" class="btn btn-primary" id="signup-modal-button">
-              Sign Up
-            </button>
-          </div>
+        <div class="modal-footer">
+          <!-- data-dismiss="modal" -->
+          <button type="button" class="btn btn-success" id="login-modal-button">
+            Login
+          </button>
+          <button type="button" class="btn btn-primary" id="signup-modal-button">
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Modal Add PO -->
-    <div class="modal fade" id="add-po-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
+  <!-- Modal Add PO -->
+  <div class="modal fade" id="add-po-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-          <div class="modal-header">
-            <h2 class="modal-title">Add Purchase Order</h2>
-            <button type="button" class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-          </div>
+        <div class="modal-header">
+          <h2 class="modal-title">Add Purchase Order</h2>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
 
-          <div class="modal-body">
-            <form action="">
-              <!--
+        <div class="modal-body">
+          <form action="">
+            <!--
               Form Text Input Element Template
                   <div class="form-group">
                   <label for=""></label>
                   <input type="text" class="form-control form-control-sm" id="" placeholder="">
                   </div>
               -->
-              <div class="form-group">
-                  <span class="text-light text-center bg-danger" id="add-po-modal-msg"></span>
+            <div class="form-group">
+              <span class="text-light text-center bg-danger" id="add-po-modal-msg"></span>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4" for="po-id-input">PURCHASE ORDER ID</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="po-id-input" placeholder="">
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="po-id-input">PURCHASE ORDER ID</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control form-control-sm" id="po-id-input" placeholder="">
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="clientSite-input">CLIENT</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="clientSite-input" placeholder="">
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="clientSite-input">CLIENT</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control form-control-sm" id="clientSite-input" placeholder="">
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="zone-input">ZONE</label>
+              <div class="col-sm-8">
+                <!-- <input type="text" class="form-control form-control-sm" id="zone-input" placeholder=""> -->
+                <select class="custom-select mr-sm-2" id="zone-input">
+                  <option selected>Choose...</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                  <!-- <option value="I">I</option> -->
+                </select>
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="zone-input">ZONE</label>
-                <div class="col-sm-8">
-                  <!-- <input type="text" class="form-control form-control-sm" id="zone-input" placeholder=""> -->
-                  <select class="custom-select mr-sm-2" id="zone-input">
-                    <option selected>Choose...</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                    <option value="G">G</option>
-                    <option value="H">H</option>
-                    <!-- <option value="I">I</option> -->
-                  </select>
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="lon-input">LONGITUDE</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="lon-input" placeholder="">
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="lon-input">LONGITUDE</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control form-control-sm" id="lon-input" placeholder="">
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="lat-input">LATITUDE</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="lat-input" placeholder="">
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="lat-input">LATITUDE</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control form-control-sm" id="lat-input" placeholder="">
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="poDateTime-input">PO DATE/TIME</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="poDateTime-input" placeholder="">
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="poDateTime-input">PO DATE/TIME</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control form-control-sm" id="poDateTime-input" placeholder="">
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="totalPrice-input">TOTALPRICE [MXN]</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="totalPrice-input" placeholder="">
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="totalPrice-input">TOTALPRICE [MXN]</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control form-control-sm" id="totalPrice-input" placeholder="">
-                </div>
+            <div class="form-group row">
+              <label class="col-sm-4" for="status-input">STATUS</label>
+              <div class="col-sm-8">
+                <!-- <input type="text" class="form-control form-control-sm" id="status-input" placeholder=""> -->
+                <select class="custom-select mr-sm-2" id="status-input">
+                  <option value="P" selected>Pending</option>
+                  <option value="I">Incomplete</option>
+                  <option value="C">Complete</option>
+                  <option value="D">Delayed</option>
+                </select>
               </div>
+            </div>
 
-              <div class="form-group row">
-                <label class="col-sm-4" for="status-input">STATUS</label>
-                <div class="col-sm-8">
-                  <!-- <input type="text" class="form-control form-control-sm" id="status-input" placeholder=""> -->
-                  <select class="custom-select mr-sm-2" id="status-input">
-                    <option value="P" selected>Pending</option>
-                    <option value="I">Incomplete</option>
-                    <option value="C">Complete</option>
-                    <option value="D">Delayed</option>
-                  </select>
-                </div>
-              </div>
+          </form>
+        </div>
 
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add-po-modal-button">
-              Add Purchase Order
-            </button>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add-po-modal-button">
+            Add Purchase Order
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Draw Map Modal and Info -->
-    <div class="modal fade" id="infomap-modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-  
-            <div class="modal-header">
-              <h2 class="modal-title">Info Map Modal</h2>
-              <button type="button" class="close" data-dismiss="modal">
-                <span>&times;</span>
-              </button>
-            </div>
-  
-            <div class="modal-body">
-              <div id="key"></div>
-              <div id="map"></div>
-            </div>
+  <!-- Draw Map Modal and Info -->
+  <div class="modal fade" id="infomap-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-          </div>
+        <div class="modal-header">
+          <h2 class="modal-title">Info Map Modal</h2>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
         </div>
+
+        <div class="modal-body">
+          <div id="key"></div>
+          <div id="map"></div>
+        </div>
+
       </div>
+    </div>
+  </div>
+  <!-- Navbar Footer-->
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar navbar-dark bg-dark text-center">
+        <span class="navbar-text">© P.O. Boss Inc. All rights reserved.</span>
+    </div>
+  </div>
+  </nav>
 
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <!-- Date Time Picker -->
+  <script src="assets/javascript/jquery.datetimepicker.full.min.js"></script>
+  <!-- Firebase JS Library-->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+  <!-- MomentJS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <!-- Custom App -->
+  <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/populateDB.js"></script>
+  <!-- Draw Table -->
+  <script src="assets/javascript/drawTable.js"></script>
+  <!-- Chart JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="assets/javascript/charts.js"></script>
+  <!-- drawMap JS -->
+  <script src="assets/javascript/drawMap.js"></script>
+</body>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- Date Time Picker -->
-    <script src="assets/javascript/jquery.datetimepicker.full.min.js"></script>
-    <!-- Firebase JS Library-->
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-    <!-- MomentJS Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <!-- Custom App -->
-    <script src="assets/javascript/app.js"></script>
-    <script src="assets/javascript/populateDB.js"></script>
-    <!-- Draw Table -->
-    <script src="assets/javascript/drawTable.js"></script>
-    <!-- Chart JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script src="assets/javascript/charts.js"></script>
-    <!-- drawMap JS -->
-    <script src="assets/javascript/drawMap.js"></script>
-  </body>
 </html>
