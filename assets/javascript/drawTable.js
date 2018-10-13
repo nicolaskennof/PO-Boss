@@ -24,16 +24,16 @@ var currencyRateCache=null;
  //difference between current time and deadline
  function getTimeRemaining(endtime){
     var currentTime=Math.round((new Date()).getTime() / 1000);
-    //console.log("current Time"+currentTime);
+    console.log("current Time"+currentTime);
     var deadline= parseInt(endtime)+172800;
-    //console.log("deadline"+deadline);
+    console.log("deadline"+deadline);
     var t = deadline - currentTime;
-    //console.log("t"+t);
+    console.log("t"+t);
      var seconds = Math.floor( (t) % 60 );
      var minutes = Math.floor( (t/60) % 60 );
      var hours = Math.floor( (t/(60*60)) % 24 );
      var days = Math.floor( t/(60*60*24));
-     var totalhours= days*24+hours;
+     var totalhours= Math.floor((t/(60*60)));
          return {
              'total': t,
              'days': days,
@@ -55,7 +55,7 @@ var currencyRateCache=null;
         clearInterval(timeinterval);
         }
        
-    },10000);
+    },10000*60);
 }
 
  
