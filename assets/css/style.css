@@ -50,3 +50,13 @@ hr {
     max-height: 500px;
     overflow-y: auto;
 }
+
+.important-button {
+    color: #1A8994;
+    font-weight: bold;
+}
+
+.important-button:hover {
+    color: #ffffff;
+    font-weight: bold;
+}
