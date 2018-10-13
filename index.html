@@ -15,10 +15,10 @@
     crossorigin="anonymous">
   <!-- Maps -->
   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
 
   <title>Purchasing Orders Follow Up System</title>
 </head>
@@ -26,7 +26,8 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-      <img class="nav-img img-fluid" style="display: inline" src="assets/images/Logo.png" width="20%" height="20%">
+    <img class="nav-img img-fluid" alt="P.O. Boss logo" style="display: inline" src="assets/images/Logo.png" width="20%"
+      height="20%">
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -85,9 +86,10 @@
               </table>
             </div>
           </div>
+        </section>
       </div>
     </div>
-    </section>
+
     <!-- Ends Purchase Orders Table -->
 
     <br>
@@ -151,6 +153,7 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
+      </div>
     </section>
     <!-- End Charts Section 2 -->
   </main>
@@ -162,7 +165,7 @@
 
   <section class="container" id="welcome-container">
     <div class="jumbotron bg-dark text-light text-center">
-      <img src="assets/images/Logo.png" width="50%" height="50%">
+      <img src="assets/images/Logo.png" alt="P.O. Boss logo" width="50%" height="50%">
       <hr>
       <h1>Purchasing Orders Follow-Up System</h1>
     </div>
@@ -181,7 +184,7 @@
         </div>
 
         <div class="modal-body">
-          <form action="">
+          <form>
             <div class="form-group">
               <span class="text-light text-center bg-danger" id="login-modal-msg"></span>
             </div>
@@ -222,7 +225,7 @@
         </div>
 
         <div class="modal-body">
-          <form action="">
+          <form>
             <!--
               Form Text Input Element Template
                   <div class="form-group">

@@ -5,63 +5,63 @@ console.log("DrawMap.js")
 $(document).on("click", ".show-map", showMap);
 
 function showMap() {
-    key = $(this).attr("data-id")
-    // console.log(key);
+  key = $(this).attr("data-id")
+  // console.log(key);
 
-    database.ref().child(key)
-        .once('value')
-            .then(function(snapshot) {
-                let record = snapshot.val();
-                // console.log(record);
+  database.ref().child(key)
+    .once('value')
+    .then(function (snapshot) {
+      let record = snapshot.val();
+      // console.log(record);
 
-                let lat = record.lat;
-                let lng = record.lon;
-                let clientSite = record.clientSite;
+      let lat = record.lat;
+      let lng = record.lon;
+      let clientSite = record.clientSite;
 
-                let appId = "q2GwNTjYOVJI2g6cBnwO";
-                let appCode = "ezcVvBgQdSFtrw-d4N9kbA";
+      let appId = "q2GwNTjYOVJI2g6cBnwO";
+      let appCode = "ezcVvBgQdSFtrw-d4N9kbA";
 
-                let imgWidth = "600";
-                let imgHeight = "400";
-                let imgFormat = "0"  // PNG
-                let zoom = 15;
+      let imgWidth = "600";
+      let imgHeight = "400";
+      let imgFormat = "0"  // PNG
+      let zoom = 15;
 
-                let markBgColor = "white";
-                let markTextColor = "red";
-                let markText = clientSite;
+      let markBgColor = "white";
+      let markTextColor = "red";
+      let markText = clientSite;
 
-                let myURL = 
-                  "https://image.maps.api.here.com/mia/1.6/mapview?"
-                  + "app_id=" + appId
-                  + "&app_code=" + appCode
-                  + "&z=" + zoom
-                  + "&f=" + imgFormat + "&w=" + imgWidth + "&h=" + imgHeight
-                  + "&poix0="+ lat + "%2C" + lng + "%3B" + markBgColor + "%3B" + markTextColor + "%3B20%3B" + markText
-                
-                // console.log(myURL);
+      let myURL =
+        "https://image.maps.api.here.com/mia/1.6/mapview?"
+        + "app_id=" + appId
+        + "&app_code=" + appCode
+        + "&z=" + zoom
+        + "&f=" + imgFormat + "&w=" + imgWidth + "&h=" + imgHeight
+        + "&poix0=" + lat + "%2C" + lng + "%3B" + markBgColor + "%3B" + markTextColor + "%3B20%3B" + markText
 
-                $.ajax({
-                  url: myURL,
-                  method: "GET"
-                }).done(function(request){
-                  // If there is a response the Map will be rendered
-                  $("#img-map").remove();
-                  let imgElement = $('<img alt="Map" id="img-map">');
-                  
-                  imgElement.attr("src", myURL);
-                  $("#map").append(imgElement);
+      // console.log(myURL);
 
-                  $("#infomap-modal").modal("show");
-                });
-                
-                // $("#infomap-modal #key").text(snapshot.key);
-                // $("#infomap-modal #map").text(
-                //     "Customer: " + record.clientSite +
-                //     "Lat: " + record.lat + "Long: " + record.long
-                // );
+      $.ajax({
+        url: myURL,
+        method: "GET"
+      }).done(function (request) {
+        // If there is a response the Map will be rendered
+        $("#img-map").remove();
+        let imgElement = $('<img alt="Map" id="img-map">');
 
-                $("#infomap-modal").modal("show");
-            });
+        imgElement.attr("src", myURL);
+        $("#map").append(imgElement);
+
+        $("#infomap-modal").modal("show");
+      });
+
+      // $("#infomap-modal #key").text(snapshot.key);
+      // $("#infomap-modal #map").text(
+      //     "Customer: " + record.clientSite +
+      //     "Lat: " + record.lat + "Long: " + record.long
+      // );
+
+      $("#infomap-modal").modal("show");
+    });
 }
 
 // NOTES

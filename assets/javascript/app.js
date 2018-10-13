@@ -37,7 +37,7 @@ let passwordInput = "";
 // ////////////////////////////
 
 // Function to Validate the Input Information in the Modal Form
-let isAddPOFormValid = function(){
+let isAddPOFormValid = function () {
     let valid = true;
     let msg = "";
 
@@ -47,92 +47,92 @@ let isAddPOFormValid = function(){
     let clientSite = $("#clientSite-input").val().trim();
     let validZones = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     let zone = $("#zone-input option:selected").val().trim();
-    console.log("Zone Selected:",zone);
+    console.log("Zone Selected:", zone);
     let lon = $("#lon-input").val().trim();
     let lat = $("#lat-input").val().trim();
     let poDateTime = $("#poDateTime-input").val().trim();
     let totalPrice = $("#totalPrice-input").val().trim();
     let validStatuses = ['P', 'C', 'I', 'D'];
     let status = $("#status-input option:selected").val().trim();
-    console.log("Status Selected:",status);
+    console.log("Status Selected:", status);
 
     let thisId;
     // poId Check
     thisId = "po-id-input"
-    if (poId === ""){
+    if (poId === "") {
         valid = false;
         msg = "Purchase Order Value Not Valid";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
     // clientSite Check
     thisId = "clientSite-input";
-    if (clientSite === ""){
+    if (clientSite === "") {
         valid = false;
         msg = "Client Site Value Not Valid";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
     // zone Check
     thisId = "zone-input";
-    if (!(validZones.includes(zone))){
+    if (!(validZones.includes(zone))) {
         valid = false;
         msg = "Zone Value is Not Valid";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
     // lon Check
     thisId = "lon-input";
-    if ((lon === "")||(!(-180 <= lon && lon <= 180))){
+    if ((lon === "") || (!(-180 <= lon && lon <= 180))) {
         valid = false;
         msg = "Longitude Value Not Valid [-180 <= lat <= 180]";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
     // Lat Check
     thisId = "lat-input";
-    if ((lat === "")||(!(-90 <= lat && lat <= 90))){
+    if ((lat === "") || (!(-90 <= lat && lat <= 90))) {
         valid = false;
         msg = "Latitude Value Not Valid [-90 <= lat <= 90]";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
     // poDateTime Check
     thisId = "poDateTime-input";
-    if ((poDateTime === "")||(!dateTimeRegExp.test(poDateTime))){
+    if ((poDateTime === "") || (!dateTimeRegExp.test(poDateTime))) {
         valid = false;
         msg = "Date Time Value Not Valid";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
 
         // var ts = moment(poDateTime, "YYYY/M/D H:mm").unix();
         // console.log("ts unix:", ts);
@@ -143,31 +143,31 @@ let isAddPOFormValid = function(){
 
     // totalPrice Check
     thisId = "totalPrice-input";
-    if ((totalPrice === "")||!($.isNumeric(totalPrice))){
+    if ((totalPrice === "") || !($.isNumeric(totalPrice))) {
         valid = false;
         msg = "Total Price Value Not Valid";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
     // status Check
     thisId = "status-input";
-    if (!(validStatuses.includes(status))){
+    if (!(validStatuses.includes(status))) {
         valid = false;
         msg = "Status Value Not Valid";
-        $("#"+thisId+"-msg").remove();
-        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
-        $("#"+thisId).addClass("is-invalid");
-    } else{
-        $("#"+thisId+"-msg").remove();
-        $("#"+thisId).removeClass("is-invalid");
+        $("#" + thisId + "-msg").remove();
+        $('<div class="alert-msg text-danger" id="' + thisId + '-msg">').insertAfter("#" + thisId).text(msg);
+        $("#" + thisId).addClass("is-invalid");
+    } else {
+        $("#" + thisId + "-msg").remove();
+        $("#" + thisId).removeClass("is-invalid");
     }
 
-    if(valid){
+    if (valid) {
         return true;
     } else {
         return false;
@@ -192,7 +192,7 @@ $('#login-modal').on('show.bs.modal', function (event) {
 });
 
 // Login From The Modal
-$("#login-modal-button").on("click", function(event) {
+$("#login-modal-button").on("click", function (event) {
     // Test Event
     console.log("#login-modal-button Clicked");
     // Prevent the default behavior of Form' Submit button
@@ -205,13 +205,13 @@ $("#login-modal-button").on("click", function(event) {
     // Sign In with auth returns a Promise
     const promise = auth.signInWithEmailAndPassword(email, password);
     // The promise Catch capture Errors
-    promise.then(function(e){
+    promise.then(function (e) {
         // console.log(e.message);
         // Remove Modal Message if any
         $("#login-msg").remove();
         let modalMessage = $('<div id="login-msg" class="alert alert-succsess">').text(e.message);
         modalMessage.insertAfter($("#login-modal-msg"));
-        setTimeout(function(){
+        setTimeout(function () {
             $("#login-msg").remove();
             $("#email-input").val("");
             $("#password-input").val("");
@@ -219,7 +219,7 @@ $("#login-modal-button").on("click", function(event) {
         }, 500);
     });
     // The promise Catch capture Errors
-    promise.catch(function(e){
+    promise.catch(function (e) {
         // console.log(e.message);
         // Remove Modal Message if any
         $("#login-msg").remove();
@@ -229,7 +229,7 @@ $("#login-modal-button").on("click", function(event) {
 });
 
 // SignUp From The Modal
-$("#signup-modal-button").on("click", function(event) {
+$("#signup-modal-button").on("click", function (event) {
     // Test Event
     console.log("#signup-modal-button Clicked");
     // Prevent the default behavior of Form' Submit button
@@ -242,13 +242,13 @@ $("#signup-modal-button").on("click", function(event) {
     // Sign In with auth returns a Promise
     const promise = auth.createUserWithEmailAndPassword(email, password);
     // The promise Catch capture Errors
-    promise.then(function(e){
+    promise.then(function (e) {
         // console.log(e.message);
         // Remove Modal Message if any
         $("#login-msg").remove();
         let modalMessage = $('<div id="login-msg" class="alert alert-succsess">').text(e.message);
         modalMessage.insertAfter($("#login-modal-msg"));
-        setTimeout(function(){
+        setTimeout(function () {
             $("#login-msg").remove();
             $("#email-input").val("");
             $("#password-input").val("");
@@ -256,7 +256,7 @@ $("#signup-modal-button").on("click", function(event) {
         }, 500);
     });
     // The promise Catch capture Errors
-    promise.catch(function(e){
+    promise.catch(function (e) {
         // console.log(e.message);
         // Remove Modal Message if any
         $("#login-msg").remove();
@@ -265,13 +265,13 @@ $("#signup-modal-button").on("click", function(event) {
     });
 });
 
-$("#logout-link").on("click", function(e){
+$("#logout-link").on("click", function (e) {
     firebase.auth().signOut();
 });
 
 // Authentication Real-Time Listener
 firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser){
+    if (firebaseUser) {
         // console.log(firebaseUser);
         // console.log("Logged In");
         // console.log(firebaseUser);
@@ -282,7 +282,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $("#welcome-container").hide(500);
         $("#navbar-menu-noauth").hide();
     }
-    else{
+    else {
         console.log("Not Logged In");
 
         $("#main-container").hide(500);
@@ -297,13 +297,13 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 // Date Time Picker Configuration
 $.datetimepicker.setLocale('en');
 $('#poDateTime-input').datetimepicker({
-    dayOfWeekStart : 1,
-    lang:'en',
+    dayOfWeekStart: 1,
+    lang: 'en',
     // disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
     // startDate:	'1986/01/05'
 });
 // $('#poDateTime-input').datetimepicker({value:'2015/04/15 05:03', step:10});
-    
+
 
 // Fires When #add-po-modal Modal Show Up
 // Assign the Form Input Variables 
@@ -313,13 +313,13 @@ $('#poDateTime-input').datetimepicker({
 // });
 
 // Add PO Information From The Modal
-$("#add-po-modal-button").on("click", function(event) {
+$("#add-po-modal-button").on("click", function (event) {
     // Test Event
     console.log("#add-po-modal-button Clicked");
     // Prevent the default behavior of Form' Submit button
     event.preventDefault();
 
-    if(isAddPOFormValid()){
+    if (isAddPOFormValid()) {
         let dbPOrecord = {
             poId: $("#po-id-input").val().trim(),
             clientSite: $("#clientSite-input").val().trim(),
@@ -344,14 +344,14 @@ $("#add-po-modal-button").on("click", function(event) {
         console.log("PO Record Added");
 
         // Hide Modal in 0.5 sec
-        setTimeout(function(){
+        setTimeout(function () {
             $('#add-po-modal').modal('hide')
         }, 500);
 
         // Clear Modal Information
         clearAddPOModal();
     }
-    else{
+    else {
         console.log("The Form Has Errors!")
     }
 
@@ -368,7 +368,7 @@ $("#add-po-modal-button").on("click", function(event) {
 // status-input [Select]
 
 // Clears all of the text-boxes
-function clearAddPOModal(){
+function clearAddPOModal() {
     $("#po-id-input").val("");
     $("#clientSite-input").val("");
     // $("#zone-input").val("");
@@ -380,7 +380,7 @@ function clearAddPOModal(){
 }
 
 // Convert to Unix Time
-function toUnixtime(dateTime){
+function toUnixtime(dateTime) {
 
 }
 
