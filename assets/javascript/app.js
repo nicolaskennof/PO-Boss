@@ -206,18 +206,26 @@ $("#login-modal-button").on("click", function(event) {
     const promise = auth.signInWithEmailAndPassword(email, password);
     // The promise Catch capture Errors
     promise.then(function(e){
-        console.log(e.message);
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-succsess">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
         setTimeout(function(){
+            $("#login-msg").remove();
+            $("#email-input").val("");
+            $("#password-input").val("");
             $('#login-modal').modal('hide')
         }, 500);
     });
     // The promise Catch capture Errors
     promise.catch(function(e){
-        console.log(e.message);
-        $("#login-modal-msg").text(e.message);
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-danger">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
     });
-
-    // $('#login-modal').modal('hide');
 });
 
 // SignUp From The Modal
@@ -235,20 +243,26 @@ $("#signup-modal-button").on("click", function(event) {
     const promise = auth.createUserWithEmailAndPassword(email, password);
     // The promise Catch capture Errors
     promise.then(function(e){
-        console.log("Sign-Up Success");
-        $("#login-modal-msg").text("Sign-Up Success");
-        $("#login-modal-msg").removeClass("login-error");
-        $("#login-modal-msg").addClass("login-success");
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-succsess">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
+        setTimeout(function(){
+            $("#login-msg").remove();
+            $("#email-input").val("");
+            $("#password-input").val("");
+            $('#login-modal').modal('hide')
+        }, 500);
     });
     // The promise Catch capture Errors
     promise.catch(function(e){
-        console.log(e.message);
-        $("#login-modal-msg").removeClass("login-success");
-        $("#login-modal-msg").addClass("login-error");
-        $("#login-modal-msg").text(e.message);
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-danger">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
     });
-
-    // $('#login-modal').modal('hide');
 });
 
 $("#logout-link").on("click", function(e){
