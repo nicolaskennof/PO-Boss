@@ -13,7 +13,7 @@ var currencyRateCache=null;
         //console.log(json);
         currencyRateCache=json.USD_MXN;
         callbackPrice(currencyRateCache);
-        console.log("cambio"+currencyRateCache);
+        //console.log("cambio"+currencyRateCache);
     }).fail(function(error){
         callbackPrice(19);
     });
@@ -43,22 +43,9 @@ var currencyRateCache=null;
              'totalhours': totalhours
          };
 }
-//show the time remaining
- function initializeClock(id, endtime) {
-    var clock = document.getElementById(id);
-    var timeinterval = setInterval(function(){
-        var t = getTimeRemaining(endtime);
-        //clock.innerHTML = 'days: ' + t.days + '<br>' +
-        //                'hours: '+ t.hours + '<br>';
-        clock.innerHTML=t.totalhours;
-        if(t.total<=0){
-        clearInterval(timeinterval);
-        }
-       
-    },10000*60);
-}
 
- 
+
+
 convertToUSD(function(USDMXN){  
 // Firebase watcher .on("child_added"
 database.ref().on("child_added", function(snapshot) {
@@ -96,6 +83,13 @@ database.ref().on("child_added", function(snapshot) {
     let timeLeftTd = $("<td>");
     //giving an id per timecell
     timeLeftTd.attr("id","time"+snapshot.val().poId);
+    var totalhours=(getTimeRemaining(snapshot.val().poDateTime).totalhours)
+    timeLeftTd.text(totalhours);
+    if (totalhours<=0){
+        database.ref().child(snapshot.key).update({ status: "D"});
+    
+    $('#' + snapshot.key).find('.status-td').text("D");
+    };
 
     let statusTd = $('<td class="status-td">');
     statusTd.text(snapshot.val().status);
@@ -133,8 +127,7 @@ database.ref().on("child_added", function(snapshot) {
     row.append(actionsTd);
 
     row.appendTo(poTable);
-    initializeClock("time"+snapshot.val().poId,snapshot.val().poDateTime);
-
+    
     // Handle the errors
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
