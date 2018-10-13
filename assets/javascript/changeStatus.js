@@ -18,7 +18,7 @@ function statusCompleteUpdate() {
 
     let buttonPending = $('<button type="button" class="btn btn-sm btn-secondary btn-pending" data-id= ' + key + '>').text("P");
 
-    database.ref().child(key).update({ status: "C"});
+    database.ref().child(key).update({ status: "C", modifiedBy: firebase.auth().currentUser.email });
     
     $('#' + key).find('.status-td').text("C");
     $('#' + key).find('.btn-complete').remove();
@@ -42,7 +42,7 @@ function statusInCompleteUpdate() {
 
     let buttonPending = $('<button type="button" class="btn btn-sm btn-secondary btn-pending" data-id= ' + key + '>').text("P");
 
-    database.ref().child(key).update({ status: "I"});
+    database.ref().child(key).update({ status: "I", modifiedBy: firebase.auth().currentUser.email});
     $('#' + key).find('.status-td').text("I");
     $('#' + key).find('.btn-complete').remove();
     $('#' + key).find('.btn-incomplete').remove();
@@ -66,7 +66,7 @@ function statusPending() {
     let buttonComplete = $('<button type="button" class="btn btn-sm btn-success btn-complete" data-id= ' + key + '>').text("C");
     let buttonIncomplete = $('<button type="button" class="btn btn-sm btn-danger btn-incomplete" data-id= ' + key + '>').text("I");
 
-    database.ref().child(key).update({ status: "P"});
+    database.ref().child(key).update({ status: "P", modifiedBy: firebase.auth().currentUser.email});
     let currentStatus = $('#' + key).find('.status-td').text();
     $('#' + key).find('.status-td').text("P");
     $('#' + key).find('.btn-pending').remove();

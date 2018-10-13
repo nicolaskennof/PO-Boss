@@ -41,71 +41,130 @@ let isAddPOFormValid = function(){
     let valid = true;
     let msg = "";
 
+    const dateTimeRegExp = /^(19|20)\d\d[- \/.](0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01]) ([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
     let poId = $("#po-id-input").val().trim();
     let clientSite = $("#clientSite-input").val().trim();
     let validZones = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     let zone = $("#zone-input option:selected").val().trim();
+    console.log("Zone Selected:",zone);
     let lon = $("#lon-input").val().trim();
     let lat = $("#lat-input").val().trim();
     let poDateTime = $("#poDateTime-input").val().trim();
     let totalPrice = $("#totalPrice-input").val().trim();
     let validStatuses = ['P', 'C', 'I', 'D'];
     let status = $("#status-input option:selected").val().trim();
+    console.log("Status Selected:",status);
 
+    let thisId;
     // poId Check
+    thisId = "po-id-input"
     if (poId === ""){
         valid = false;
         msg = "Purchase Order Value Not Valid";
-        $('<div class="alert-msg text-red" id="po-id-input-msg">').insertAfter("#po-id-input").text(msg);;
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     // clientSite Check
+    thisId = "clientSite-input";
     if (clientSite === ""){
         valid = false;
         msg = "Client Site Value Not Valid";
-        $("#clientSite-input-msg").text(msg);
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     // zone Check
-    if (!(zone in validZones)){
+    thisId = "zone-input";
+    if (!(validZones.includes(zone))){
         valid = false;
-        msg = "Zone Value Not Valid";
-        $("#zone-input-msg").text(msg);
+        msg = "Zone Value is Not Valid";
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     // lon Check
-    if (lon === ""){
+    thisId = "lon-input";
+    if ((lon === "")||(!(-180 <= lon && lon <= 180))){
         valid = false;
-        msg = "Longitude Value Not Valid";
-        $("#lon-input-msg").text(msg);
+        msg = "Longitude Value Not Valid [-180 <= lat <= 180]";
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     // Lat Check
-    if (lat === ""){
+    thisId = "lat-input";
+    if ((lat === "")||(!(-90 <= lat && lat <= 90))){
         valid = false;
-        msg = "Latitude Value Not Valid";
-        $("#lat-input-msg").text(msg);
+        msg = "Latitude Value Not Valid [-90 <= lat <= 90]";
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     // poDateTime Check
-    if (poDateTime === ""){
+    thisId = "poDateTime-input";
+    if ((poDateTime === "")||(!dateTimeRegExp.test(poDateTime))){
         valid = false;
         msg = "Date Time Value Not Valid";
-        $("#poDateTime-input-msg").text(msg);
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
+
+        // var ts = moment(poDateTime, "YYYY/M/D H:mm").unix();
+        // console.log("ts unix:", ts);
+        // var m = moment.unix(ts);
+        // console.log("moment back", m.format("YYYY/M/D H:mm"));
+
     }
 
     // totalPrice Check
-    if (totalPrice === ""){
+    thisId = "totalPrice-input";
+    if ((totalPrice === "")||!($.isNumeric(totalPrice))){
         valid = false;
         msg = "Total Price Value Not Valid";
-        $("#totalPrice-input-msg").text(msg);
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     // status Check
-    if (!(status in validStatuses)){
+    thisId = "status-input";
+    if (!(validStatuses.includes(status))){
         valid = false;
         msg = "Status Value Not Valid";
-        $("#status-input-msg").text(msg);
+        $("#"+thisId+"-msg").remove();
+        $('<div class="alert-msg text-danger" id="'+ thisId +'-msg">').insertAfter("#"+thisId).text(msg);
+        $("#"+thisId).addClass("is-invalid");
+    } else{
+        $("#"+thisId+"-msg").remove();
+        $("#"+thisId).removeClass("is-invalid");
     }
 
     if(valid){
@@ -147,18 +206,26 @@ $("#login-modal-button").on("click", function(event) {
     const promise = auth.signInWithEmailAndPassword(email, password);
     // The promise Catch capture Errors
     promise.then(function(e){
-        console.log(e.message);
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-succsess">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
         setTimeout(function(){
+            $("#login-msg").remove();
+            $("#email-input").val("");
+            $("#password-input").val("");
             $('#login-modal').modal('hide')
         }, 500);
     });
     // The promise Catch capture Errors
     promise.catch(function(e){
-        console.log(e.message);
-        $("#login-modal-msg").text(e.message);
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-danger">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
     });
-
-    // $('#login-modal').modal('hide');
 });
 
 // SignUp From The Modal
@@ -176,20 +243,26 @@ $("#signup-modal-button").on("click", function(event) {
     const promise = auth.createUserWithEmailAndPassword(email, password);
     // The promise Catch capture Errors
     promise.then(function(e){
-        console.log("Sign-Up Success");
-        $("#login-modal-msg").text("Sign-Up Success");
-        $("#login-modal-msg").removeClass("login-error");
-        $("#login-modal-msg").addClass("login-success");
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-succsess">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
+        setTimeout(function(){
+            $("#login-msg").remove();
+            $("#email-input").val("");
+            $("#password-input").val("");
+            $('#login-modal').modal('hide')
+        }, 500);
     });
     // The promise Catch capture Errors
     promise.catch(function(e){
-        console.log(e.message);
-        $("#login-modal-msg").removeClass("login-success");
-        $("#login-modal-msg").addClass("login-error");
-        $("#login-modal-msg").text(e.message);
+        // console.log(e.message);
+        // Remove Modal Message if any
+        $("#login-msg").remove();
+        let modalMessage = $('<div id="login-msg" class="alert alert-danger">').text(e.message);
+        modalMessage.insertAfter($("#login-modal-msg"));
     });
-
-    // $('#login-modal').modal('hide');
 });
 
 $("#logout-link").on("click", function(e){
@@ -200,7 +273,8 @@ $("#logout-link").on("click", function(e){
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser){
         // console.log(firebaseUser);
-        console.log("Logged In");
+        // console.log("Logged In");
+        // console.log(firebaseUser);
 
         $("#main-container").show(500);
         $("#navbar-menu-auth").show();
@@ -252,14 +326,18 @@ $("#add-po-modal-button").on("click", function(event) {
             zone: $("#zone-input option:selected").val().trim(),
             lon: $("#lon-input").val().trim(),
             lat: $("#lat-input").val().trim(),
-            poDateTime: $("#poDateTime-input").val().trim(),
+            poDateTime: moment($("#poDateTime-input").val().trim(), "YYYY/M/D H:mm").unix(),
             totalPrice: $("#totalPrice-input").val().trim(),
             status: $("#status-input option:selected").val().trim(),
+            createdBy: firebase.auth().currentUser.email,
+            modifiedBy: firebase.auth().currentUser.email,
             dateAdded: firebase.database.ServerValue.TIMESTAMP,
         }
 
+        console.log()
+
         // Code To Push the Data Record to the DataBase
-        // database.ref().push(dbPOrecord);
+        database.ref().push(dbPOrecord);
 
         // Debug
         console.log(dbPOrecord);
