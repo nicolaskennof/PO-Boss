@@ -41,3 +41,7 @@ header {
 .carousel-indicators {
     margin-top: 525px;
 }
+
+hr {
+    background-color: #9A9DA0;
+}
