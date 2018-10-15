@@ -1,6 +1,9 @@
 # Purchasing-Orders-Follow-Up-System
 Purchasing Orders Follow-Up System for registering of the PO and their follow up until delivery to customers
 
+## Deployed Project
+Please visit it at https://nicolaskennof.github.io/PO-Boss/
+
 ## PTT Presentation
 [Link to PTT Presentation](https://docs.google.com/presentation/d/1tLMjteb4qp60cTpJ9WEAurfOwgx-qxMX1uiCRd6iFpY/edit)
 
