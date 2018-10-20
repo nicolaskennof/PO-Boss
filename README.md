@@ -7,6 +7,19 @@ Please visit it at https://nicolaskennof.github.io/PO-Boss/
 ## PTT Presentation
 [Link to PTT Presentation](https://docs.google.com/presentation/d/1tLMjteb4qp60cTpJ9WEAurfOwgx-qxMX1uiCRd6iFpY/edit)
 
+## Descrption of the problem
+From the moment the POs from identified customers arrive in the mailbox and the moment the order actually get to the customers, there is a whole lot of probabilities that they will be lost if not centralized from the beginning until the end on a follow-up platform.
+
+## How we solved the problem
+We solved the problem by creating a bootstrap platform where the entered PO information is centralized to a Firebase database. By doing so, we ensure all involved people will see the same information independently from the device and the device type.
+
+We integarted some usefull charts so that having a quickly understable overview is made easy.
+
+## Technical approach
+Realtime Firebase database in order to push the data in real time in index.html.
+Charts.js for the creation and update of the charts.
+Javascript based with AJAX calls to JASON API's.
+We decided to split the different features into different JAVACRIPT files so that each member can easily update its branch with specific features.
 
 ## Firebase Authentication Notes
 **Steps**
